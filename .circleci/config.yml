@@ -27,6 +27,7 @@ jobs:
       - image: cimg/node:14.16.0
     steps:
       - checkout
+      - run: npm install
       - run:
           command: node scripts/check_queue.js
           environment:

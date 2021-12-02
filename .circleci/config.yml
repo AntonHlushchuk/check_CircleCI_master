@@ -20,6 +20,8 @@ jobs:
     steps:
       - checkout
       - run: echo "this is the test job"
+          command: npm test
+
 
 # Orchestrate our job run sequence
 workflows:

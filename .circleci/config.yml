@@ -19,8 +19,9 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: echo "this is the test job"
+      - run:
           command: npm test
+          name: Run tests
 
 
 # Orchestrate our job run sequence

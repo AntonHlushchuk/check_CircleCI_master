@@ -22,13 +22,30 @@ jobs:
       - run:
           command: npm test
           name: Run tests
-
-
+  check_queue:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - run:
+          command: node scripts/check_queue.js
+          environment:
+            DEFAULT_BRANCH: master
+            QUEUE_CHECK_FREQUENCY: 30
+          name: Run queue script
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
-      - build
+      - check_queue:
+          filters:
+            branches:
+              only:
+                - master
+      - build:
+          requires:
+            - check_queue
       - test:
           requires:
+            - check_queue
             - build

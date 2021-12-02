@@ -9,7 +9,7 @@ const logToConsole = process.env.CIRCLECI ? console.log : () => {}; // eslint-di
 
 const getOlderRunningBuilds = async ({ defaultBranch, circleBuildNum } = {}) => {
     const recentBuilds = (await axios.get(
-        `https://circleci.com/api/v1.1/project/github/check_CircleCI_master/tree/${defaultBranch}`,
+        `https://circleci.com/api/v1.1/project/github/AntonHlushchuk/check_CircleCI_master/tree/${defaultBranch}`,
         {
             params: {
                 'circle-token': process.env.CIRCLE_TOKEN,
@@ -45,7 +45,7 @@ moduleExports.checkQueueForSlot = async ({
     logToConsole(`Done fetching. Fetched ${builds.length} builds`);
 
     const branch = (await axios.get(
-        `https://api.github.com/repos/check_CircleCI_master/git/refs/heads/${defaultBranch}`,
+        `https://api.github.com/repos/AntonHlushchuk/check_CircleCI_master/git/refs/heads/${defaultBranch}`,
         {
             headers: githubApiHeaders
         }
